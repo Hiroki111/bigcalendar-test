@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import BigCalendar from 'react-big-calendar'
+// This line causes an error
+// (Attempted import error: 'react-big-calendar' does not contain a default export (imported as 'BigCalendar'))
+// using "import Calendar from 'react-big-calendar" results in a different error, saying
+// Attempted import error: 'react-big-calendar' does not contain a default export (imported as 'BigCalendar')
+
+import moment from 'moment'
+import events from './events'
+
+const localizer = BigCalendar.momentLocalizer(moment);
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BigCalendar
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+      />
     </div>
   );
 }
